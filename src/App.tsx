@@ -58,8 +58,8 @@ const App: React.FC = () => {
     const startTasks = tasks.filter(task => task.status === sourceStatus);
     const finishTasks = sourceStatus === destinationStatus ? startTasks : tasks.filter(task => task.status === destinationStatus);
 
-    const [removedTask] = startTasks.splice(sourceIndex, 1);
-    finishTasks.splice(destIndex, 0, removedTask);
+    const [removedTask] = startTasks.splice(sourceIndex, 1); //Task being moved
+    finishTasks.splice(destIndex, 0, removedTask); //Insert task being moved into the array of updated task with updated status
     
     removedTask.status = destinationStatus;
     if(destinationStatus === 'Completed'){
