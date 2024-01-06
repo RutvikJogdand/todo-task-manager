@@ -37,29 +37,31 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form-control p-4' onSubmit={handleSubmit}>
       <input 
         type="text"
         placeholder="Title"
         value={title}
+        className='form-control m-2'
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea 
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        className='form-control m-2'
       />
-      <select value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
+      <select className='form-control m-2' value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
         <option value="Added">Added</option>
         <option value="Started">Started</option>
         <option value="Completed">Completed</option>
       </select>
-      <select value={priority} onChange={(e) => setPriority(e.target.value as TaskPriority)}>
+      <select className='form-control m-2' value={priority} onChange={(e) => setPriority(e.target.value as TaskPriority)}>
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
-      <button type="submit">Add Task</button>
+      <button className='btn btn-primary m-2' type="submit">Add Task</button>
     </form>
   );
 };

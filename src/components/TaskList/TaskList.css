@@ -1,0 +1,14 @@
+.tasks-box{
+    /* justify-content: space-around; */
+    align-content: center;
+    align-items: center;
+}
+
+.task-card{
+    height: 500px;
+    flex: 1;
+}
+
+.task-card > div{
+    height: 100%;
+}
