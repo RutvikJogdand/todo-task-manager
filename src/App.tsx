@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import TaskForm from './components/TaskForm/TaskForm';
 import { Task, TaskStatus } from './interfaces/interfaces';
 import TaskList from './components/TaskList/TaskList';
+import Modal from './components/Modal/Modal';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
@@ -22,25 +24,22 @@ const App: React.FC = () => {
     setTasks([...tasks, newTask]);
   };
 
-  const handleTaskUpdate = (taskId: string, newStatus: Task['status']) => {
-    setTasks(tasks.map(task => {
-      if (task.id === taskId) {
-        return {
-          ...task,
-          status: newStatus,
-          dates: {
-            ...task.dates,
-            started: newStatus === 'Started' ? new Date().toISOString() : task.dates.started,
-            completed: newStatus === 'Completed' ? new Date().toISOString() : task.dates.completed
-          }
-        };
-      }
-      return task;
-    }));
+  const handleTaskEditInitiation = (task: Task) => {
+    // Opening modal 
+    setEditingTask(task);
+  };
+
+  const handleTaskUpdate = (updatedTask: Task) => {
+    setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task));
+    setEditingTask(null); // Closing modal and reset editing task
   };
 
   const handleTaskDelete = (taskId: string) => {
     setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
+  const closeModal = () => {
+    setEditingTask(null);
   };
 
   // On dragging a task
@@ -80,10 +79,16 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <TaskForm onAddTask={addTask} />
+        {editingTask ? (
+           <Modal isOpen={!!editingTask} onClose={closeModal}>
+            <TaskForm onAddTask={addTask} onUpdateTask={handleTaskUpdate} task={editingTask} />
+          </Modal>
+        ) : (
+          <TaskForm onAddTask={addTask} />
+        )}
       <TaskList 
         tasks={tasks}
-        onTaskUpdate={handleTaskUpdate}
+        onTaskEditInitiation={handleTaskEditInitiation}
         onTaskDelete={handleTaskDelete}
         onDragEnd={onDragEnd}
       />

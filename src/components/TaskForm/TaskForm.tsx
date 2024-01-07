@@ -1,39 +1,50 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { Task, TaskStatus, TaskPriority } from '../../interfaces/interfaces';
 
 type TaskFormProps = {
   onAddTask: (task: Task) => void;
+  onUpdateTask?: (task: Task) => void;
+  task?: Task; 
 };
 
-const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [status, setStatus] = useState<TaskStatus>('Added');
-  const [priority, setPriority] = useState<TaskPriority>('Medium');
+const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => {
+  const [title, setTitle] = useState<string>(task ? task.title : '');
+  const [description, setDescription] = useState<string>(task ? task.description : '');
+  const [status, setStatus] = useState<TaskStatus>(task ? task.status : 'Added');
+  const [priority, setPriority] = useState<TaskPriority>(task ? task.priority : 'Medium');
+
+  useEffect(() => {
+    // Update form fields if the task prop changes
+    if (task) {
+      setTitle(task.title);
+      setDescription(task.description);
+      setStatus(task.status);
+      setPriority(task.priority);
+    }
+  }, [task]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!title.trim()) return;
 
-    const newTask: Task = {
-      id: Date.now().toString(),
+    const formTask: Task = {
+      id: task ? task.id : Date.now().toString(),
       title,
       description,
       status,
-      dates: {
-        added: new Date().toISOString(),
-        started: null,
-        completed: null
-      },
+      dates: task ? task.dates : { added: new Date().toISOString(), started: null, completed: null },
       priority
     };
-
-    onAddTask(newTask);
-    // Reset the form fields
-    setTitle('');
-    setDescription('');
-    setStatus('Added');
-    setPriority('Medium');
+  
+    task ? onUpdateTask?.(formTask) : onAddTask(formTask);
+  
+    if (!task) {
+      // Reset the form fields only if we're adding a new task
+      setTitle('');
+      setDescription('');
+      setStatus('Added');
+      setPriority('Medium');
+    }
   };
 
   return (
@@ -61,7 +72,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
-      <button className='btn btn-primary m-2' type="submit">Add Task</button>
+      <button className='btn btn-primary m-2' type="submit">  {task ? 'Update Task' : 'Add Task'}</button>
     </form>
   );
 };

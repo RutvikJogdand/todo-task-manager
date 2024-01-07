@@ -5,10 +5,35 @@
 }
 
 .task-card{
+    min-height: 400px;
     height: 500px;
     flex: 1;
+    /* flex-grow: 1; */
+    margin: 0 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 4px rgba(0,0,0,0.2);
+}
+
+.card-header{
+    background-color: #eeeeee;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
 }
 
 .task-card > div{
     height: 100%;
 }
+
+@media only screen and (max-width: 600px) {
+    .tasks-box{
+        flex-direction: column;
+    }
+    .task-card{
+        width: 100%;
+        min-height: 300px;
+        height: 300px;
+    }
+  }
