@@ -55,7 +55,7 @@ Below are the steps to use the application with visual aids to guide you.
 3. Modify the task's details in the form that appears.
 4. Press the 'Update Task' button to save the changes.
 
-   <img height="500" src="https://raw.githubusercontent.com/RutvikJogdand/todo-task-manager/main/src/assets/desktop-app.png"/>
+   <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/edit-task.png?raw=true"/>
 
 ### Deleting a Task
 
@@ -63,7 +63,7 @@ Below are the steps to use the application with visual aids to guide you.
 2. A confirmation modal will appear.
 3. Confirm the deletion by clicking the 'Confirm Delete' button in the modal.
 
-   ![Delete Task](path-to-delete-task-image.png)
+    <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/delete-task.png?raw=true"/>
 
 ### Reorganizing Tasks
 
@@ -71,6 +71,6 @@ Below are the steps to use the application with visual aids to guide you.
 2. Drag the task card to another column based on its status (Added, Started, Completed).
 3. Release the task to drop it into the desired column.
 
-   ![Reorganize Tasks](path-to-reorganize-tasks-image.png)
+   <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/dragging-task.png?raw=true"/>
 
 
