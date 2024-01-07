@@ -1,7 +1,8 @@
-# todo-task-manager
 # Task Management App
 
 This task management application helps you organize and prioritize your tasks efficiently. With features like adding, editing, deleting tasks, and visualizing them with drag-and-drop functionality, it's designed to enhance your productivity.
+
+### Checkout the application here: https://todo-task-manager-nine.vercel.app/
 
 ## Features
 
