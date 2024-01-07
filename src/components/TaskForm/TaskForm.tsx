@@ -1,5 +1,6 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { Task, TaskStatus, TaskPriority } from '../../interfaces/interfaces';
+import toast from 'react-hot-toast';
 
 type TaskFormProps = {
   onAddTask: (task: Task) => void;
@@ -25,7 +26,7 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim()) return toast.error('Please enter title.');;
 
     const formTask: Task = {
       id: task ? task.id : Date.now().toString(),
@@ -38,6 +39,7 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => 
   
     task ? onUpdateTask?.(formTask) : onAddTask(formTask);
   
+    !task && toast.success('Task Added');
     if (!task) {
       // Reset the form fields only if we're adding a new task
       setTitle('');

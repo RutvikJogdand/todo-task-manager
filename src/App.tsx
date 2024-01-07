@@ -4,6 +4,7 @@ import { Task, TaskStatus } from './interfaces/interfaces';
 import TaskList from './components/TaskList/TaskList';
 import Modal from './components/Modal/Modal';
 import Navbar from './components/Navbar/Navbar';
+import toast,{ Toaster } from 'react-hot-toast';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -39,6 +40,8 @@ const App: React.FC = () => {
   const handleTaskUpdate = (updatedTask: Task) => {
     setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task));
     setEditingTask(null); // Closing modal and reset editing task
+
+    toast.success("Task edited")
   };
 
   const handleTaskDelete = () => {
@@ -46,6 +49,8 @@ const App: React.FC = () => {
     if (taskToDelete) {
       setTasks(tasks.filter(task => task.id !== taskToDelete.id));
       setTaskToDelete(null); // Close the confirmation modal
+
+      toast.success("Task Deleted")
     }
   };
 
@@ -96,6 +101,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <div><Toaster/></div>
       <Navbar/>
       <div className='main-container'>
           {editingTask ? (
