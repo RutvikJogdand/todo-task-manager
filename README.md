@@ -42,7 +42,7 @@ Below are the steps to use the application with visual aids to guide you.
 2. Fill in the details in the form, such as the task title, description, due date, and priority.
 3. Press the 'Submit' button to add the task to your list.
 
-   ![Add Task]([path-to-add-task-image.png](https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/desktop-app.png?raw=true))
+   ![Add Task](C:\Users\RUTVIK G JOGDAND\MyProjects\todo-task-manager\src\assets\desktop-app.png)
 
 ### Editing a Task
 
