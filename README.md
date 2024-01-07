@@ -36,13 +36,17 @@ npm start
 
 Below are the steps to use the application with visual aids to guide you.
 
+### Desktop View:
+   <img height="500" src="https://raw.githubusercontent.com/RutvikJogdand/todo-task-manager/main/src/assets/desktop-app.png"/>
+
+### Mobile View:   
+    <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/mobile-app.png?raw=true"/>
+
 ### Adding a Task
 
-1. Click on the 'Add Task' button to open the task form.
-2. Fill in the details in the form, such as the task title, description, due date, and priority.
-3. Press the 'Submit' button to add the task to your list.
+1. Fill in the details in the form, such as the task title, description, due date, and priority.
+2. Press the 'Add Task' button to add the task to your list.
 
-   <img height="500" src="https://raw.githubusercontent.com/RutvikJogdand/todo-task-manager/main/src/assets/desktop-app.png"/>
 
 ### Editing a Task
 
@@ -51,7 +55,7 @@ Below are the steps to use the application with visual aids to guide you.
 3. Modify the task's details in the form that appears.
 4. Press the 'Update Task' button to save the changes.
 
-   ![Edit Task](path-to-edit-task-image.png)
+   <img height="500" src="https://raw.githubusercontent.com/RutvikJogdand/todo-task-manager/main/src/assets/desktop-app.png"/>
 
 ### Deleting a Task
 
