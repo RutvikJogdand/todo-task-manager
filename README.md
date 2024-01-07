@@ -39,8 +39,8 @@ Below are the steps to use the application with visual aids to guide you.
 ### Desktop View:
    <img height="500" src="https://raw.githubusercontent.com/RutvikJogdand/todo-task-manager/main/src/assets/desktop-app.png"/>
 
-### Mobile View:   
-    <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/mobile-app.png?raw=true"/>
+### Mobile View:
+   <img height="500" src="https://github.com/RutvikJogdand/todo-task-manager/blob/main/src/assets/mobile-app.png?raw=true">
 
 ### Adding a Task
 
