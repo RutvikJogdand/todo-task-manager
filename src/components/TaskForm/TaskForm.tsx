@@ -49,6 +49,7 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => 
 
   return (
     <form className='form-control p-4' onSubmit={handleSubmit}>
+      <label className="form-label m-2">Title</label>
       <input 
         type="text"
         placeholder="Title"
@@ -56,17 +57,20 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => 
         className='form-control m-2'
         onChange={(e) => setTitle(e.target.value)}
       />
+      <label className="form-label m-2">Description</label>
       <textarea 
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className='form-control m-2'
       />
+      <label className="form-label m-2">Select Task Status</label>
       <select className='form-control m-2' value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
         <option value="Added">Added</option>
         <option value="Started">Started</option>
         <option value="Completed">Completed</option>
       </select>
+      <label className="form-label m-2">Select Task Priority</label>
       <select className='form-control m-2' value={priority} onChange={(e) => setPriority(e.target.value as TaskPriority)}>
         <option value="High">High</option>
         <option value="Medium">Medium</option>

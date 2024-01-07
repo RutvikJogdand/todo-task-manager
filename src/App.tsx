@@ -3,10 +3,12 @@ import TaskForm from './components/TaskForm/TaskForm';
 import { Task, TaskStatus } from './interfaces/interfaces';
 import TaskList from './components/TaskList/TaskList';
 import Modal from './components/Modal/Modal';
+import Navbar from './components/Navbar/Navbar';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [taskToDelete, setTaskToDelete] = useState<Task | null>(null);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
@@ -25,8 +27,13 @@ const App: React.FC = () => {
   };
 
   const handleTaskEditInitiation = (task: Task) => {
-    // Opening modal 
+    // Opening Edit Modal 
     setEditingTask(task);
+  };
+
+  const handleTaskDeleteConfirmation = (task: Task) => {
+    // Open Delete Modal:
+    setTaskToDelete(task);
   };
 
   const handleTaskUpdate = (updatedTask: Task) => {
@@ -34,10 +41,19 @@ const App: React.FC = () => {
     setEditingTask(null); // Closing modal and reset editing task
   };
 
-  const handleTaskDelete = (taskId: string) => {
-    setTasks(tasks.filter(task => task.id !== taskId));
+  const handleTaskDelete = () => {
+    // Confirm Deletion
+    if (taskToDelete) {
+      setTasks(tasks.filter(task => task.id !== taskToDelete.id));
+      setTaskToDelete(null); // Close the confirmation modal
+    }
   };
 
+  const closeDeleteModal = () => {
+    setTaskToDelete(null);
+  };
+  
+  // Close Edit Modal:
   const closeModal = () => {
     setEditingTask(null);
   };
@@ -50,9 +66,6 @@ const App: React.FC = () => {
     const destIndex = result.destination.index;
     const sourceStatus = result.source.droppableId as TaskStatus;
     const destinationStatus = result.destination.droppableId as TaskStatus;
-  
-    // if (sourceStatus === 'Added' && destinationStatus !== 'Started') return;
-    // if (sourceStatus === 'Started' && destinationStatus !== 'Completed') return;
   
     const startTasks = tasks.filter(task => task.status === sourceStatus);
     const finishTasks = sourceStatus === destinationStatus ? startTasks : tasks.filter(task => task.status === destinationStatus);
@@ -68,6 +81,10 @@ const App: React.FC = () => {
       removedTask.dates.started =  new Date().toISOString();
       removedTask.dates.completed = null;
     }
+    if(destinationStatus === "Added"){
+      removedTask.dates.started =  null;
+      removedTask.dates.completed = null;
+    }
     const newTasks = tasks.map(task => {
       if (task.id === removedTask.id) return removedTask;
       return task;
@@ -78,21 +95,34 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-        {editingTask ? (
-           <Modal isOpen={!!editingTask} onClose={closeModal}>
-            <TaskForm onAddTask={addTask} onUpdateTask={handleTaskUpdate} task={editingTask} />
-          </Modal>
-        ) : (
-          <TaskForm onAddTask={addTask} />
-        )}
-      <TaskList 
-        tasks={tasks}
-        onTaskEditInitiation={handleTaskEditInitiation}
-        onTaskDelete={handleTaskDelete}
-        onDragEnd={onDragEnd}
-      />
-    </div>
+    <>
+      <Navbar/>
+      <div className='main-container'>
+          {editingTask ? (
+            <Modal title={'Edit Task'} isOpen={!!editingTask} onClose={closeModal}>
+              <TaskForm onAddTask={addTask} onUpdateTask={handleTaskUpdate} task={editingTask} />
+            </Modal>
+          ) : (
+            <TaskForm onAddTask={addTask} />
+          )}
+        <TaskList 
+          tasks={tasks}
+          onTaskEditInitiation={handleTaskEditInitiation}
+          onTaskDeleteConfirmation={handleTaskDeleteConfirmation} 
+          onDragEnd={onDragEnd}
+        />
+      </div>
+      {/* Modal for task deletion confirmation: */}
+      {taskToDelete && (
+      <Modal isOpen={!!taskToDelete} onClose={closeDeleteModal} title="Confirm Delete">
+        <div>
+          <p>Are you sure you want to delete this task?</p>
+          <button onClick={handleTaskDelete}>Confirm Delete</button>
+          <button onClick={closeDeleteModal}>Cancel</button>
+        </div>
+      </Modal>
+)}
+    </>
   );
 };
 

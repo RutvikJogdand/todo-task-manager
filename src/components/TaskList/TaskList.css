@@ -1,31 +1,66 @@
 .tasks-box{
-    /* justify-content: space-around; */
     align-content: center;
     align-items: center;
 }
 
 .task-card{
-    min-height: 400px;
-    height: 500px;
+    min-height: 600px;
+    height: 700px;
     flex: 1;
-    /* flex-grow: 1; */
     margin: 0 10px;
     background: #fff;
     border-radius: 8px;
+    overflow-y: scroll;
     box-shadow: 0 3px 4px rgba(0,0,0,0.2);
 }
 
+
 .card-header{
-    background-color: #eeeeee;
+    background-color: #f9f9f9;
     padding: 10px;
     font-weight: bold;
     font-size: 0.9rem;
     border-bottom: 1px solid #ddd;
 }
 
+.status{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
 .task-card > div{
     height: 100%;
 }
+
+.date-box{
+    font-size: 0.8rem;
+    padding: 5px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the vertical scrollbar */
+    height: 10px; /* Height of the horizontal scrollbar */
+    background-color: #f9f9f9; /* Background color */
+  }
+  
+  /* Styling the scrollbar handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners on the scrollbar thumb */
+    border: 2px solid #f9f9f9; /* Creates a border around the scrollbar thumb */
+  }
+  
+  /* Styling the scrollbar handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8; /* Darker color on hover */
+  }
+  
+  /* Styling the scrollbar corner */
+  ::-webkit-scrollbar-corner {
+    background-color: #f9f9f9; /* Background color of the scrollbar corner */
+  }
 
 @media only screen and (max-width: 600px) {
     .tasks-box{
