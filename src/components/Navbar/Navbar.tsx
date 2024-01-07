@@ -5,7 +5,7 @@ const Navbar: React.FC = () => {
     return(
         <nav className='navbar navbar-dark bg-primary'>
             <div className='container-fluid'>
-                <a className='navbar-brand'>Task Manager</a>   
+                <div className='navbar-brand'>Task Manager</div>   
             </div>
         </nav>
     )
