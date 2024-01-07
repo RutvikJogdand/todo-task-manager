@@ -21,7 +21,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks,  onTaskEditInitiation, onTas
                 <Droppable droppableId={status}>
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
-                    <h3 className='status'>{status}</h3>
+                    <h3 className='status'>{status} : {tasks.filter(item => item.status === status).length} </h3>
                     {/* Filter tasks based on current status */}
                     {tasks.filter(task => task.status === status).map((task, index) => (
                         <Draggable key={task.id} draggableId={task.id} index={index}>

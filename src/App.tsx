@@ -81,6 +81,7 @@ const App: React.FC = () => {
     removedTask.status = destinationStatus;
     if(destinationStatus === 'Completed'){
       removedTask.dates.completed = new Date().toISOString(); 
+      toast.success("Task completed");
     }
     if(destinationStatus === 'Started'){
       removedTask.dates.started =  new Date().toISOString();
