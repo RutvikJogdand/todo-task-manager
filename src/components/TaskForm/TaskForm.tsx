@@ -33,7 +33,7 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask, onUpdateTask, task }) => 
       title,
       description,
       status,
-      dates: task ? task.dates : { added: new Date().toISOString(), started: null, completed: null },
+      dates: task ? task.dates : { added: new Date().toISOString(), started: status === "Started" ? new Date().toISOString() :  null, completed: status === "Completed" ? new Date().toISOString() : null },
       priority
     };
   
